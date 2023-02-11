@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public string[] keyword = new string[25]
+    {   
+        "개", "고양이", "벌", "뱀", "거미",
+        "민트초코", "두리안", "오이", "땅콩", "우유",
+        "인형", "라이터", "열쇠", "방망이", "사다리",
+        "요리사", "의사", "변호사", "경찰", "광대",
+        "카페", "공원", "바다", "산", "광장"
+    };
+
     bool isLoading = true;
 
-    public int xLimit = 2;  //min 1, max 9
+    public int xLimit = 2;
     public int zLimit = 2;
-    public GameObject factory;
-    public GameObject staff;
+    public int emotionMaxMin = 100;
+    public int emotionMaxMax = 150;
+    public int keywordMax = 10;
+    public int dreamKeywordMax = 10;
+    public float makeTime = 4.0f;
+    public float restTime = 5.0f;
+    public GameObject factory, info, staff;
+    public RaycastHit hit;
     public static GameManager instance;
 
 
@@ -28,6 +43,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         StartCoroutine(GameStart());
+
+        ViewInfo();
     }
 
     IEnumerator GameStart()
@@ -87,6 +104,27 @@ public class GameManager : MonoBehaviour
                     if (j == 0) staffObj.name = "Staff_0" + i + "_" + k;
                     else staffObj.name = "Staff_" + (j * 10 + i) + "_" + k;
                 }
+            }
+        }
+    }
+
+    void ViewInfo()
+    {
+        //메인카메라에서 마우스포인터 위치로 레이를 발사
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
+
+        if (Physics.Raycast(ray, out hit))
+        {   //레이어가 Staff인 오브젝트에 적중시 Staff Info 활성화, DrugManager와 OrderManager의 변수를 활성화
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Staff"))
+            {
+                //Debug.Log("Staff Find!");
+                info.SetActive(true);
+                hit.transform.SendMessage("SetInfo", SendMessageOptions.DontRequireReceiver);
+            }
+            else
+            {   //미적중시 비활성화
+                info.SetActive(false);
             }
         }
     }

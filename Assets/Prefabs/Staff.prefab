@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8686463275559889010}
   - component: {fileID: 8686463275559889005}
   - component: {fileID: 8686463275559889014}
+  - component: {fileID: 4370745716748349692}
   m_Layer: 8
   m_Name: Staff
   m_TagString: Untagged
@@ -44,15 +45,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8686463275559889004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b579ff1a1eb40ba44a11136cde9e1b90, type: 3}
+  m_Script: {fileID: 11500000, guid: 37658c02a54f58043b279885316833de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canSleep: 1
-  keywordLike: 
-  keywordHate: 
-  dreamKeyword: 
-  sleepLight: {fileID: 7633548311584825910, guid: 7555456b30980f24fb06ba2cb79faef7,
-    type: 3}
 --- !u!33 &8686463275559889011
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -129,3 +124,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4370745716748349692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8686463275559889004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37658c02a54f58043b279885316833de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
